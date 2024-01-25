@@ -4,7 +4,7 @@ namespace WeAreFighters3D.BattleUnit
 {
     public enum MoveDir 
     {
-        Idle = 0, Left = -1, Right = 1
+        Stop = 0, Left = -1, Right = 1
     }
 
     [RequireComponent(typeof(Rigidbody), typeof(Collider))]

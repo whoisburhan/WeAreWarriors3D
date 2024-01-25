@@ -7,14 +7,18 @@ namespace WeAreFighters3D.BattleUnit
         // Controller for each battle unit
 
         /// Health
+        private IHealth health;
+        
+
         /// Attack
         /// Movement
 
-        [SerializeField] IMovement movement;
+        private IMovement movement;
 
         private void Awake()
         {
             if (movement == null) movement = GetComponent<IMovement>();
+            if (health == null) health = GetComponent<IHealth>();
         }
 
         void FixedUpdate()
@@ -29,7 +33,21 @@ namespace WeAreFighters3D.BattleUnit
     }
 
 
-    
+   
+
+    public interface IHealth
+    {
+        public int MaxHealth { set; }
+
+        /// <returns>Alive 1 or Death 0</returns>
+        public bool GotDamage(int damageAmount);
+        public void Reset();
+    }
+
+
+    /// <summary>
+    ///---------------------------------------------------------------------------------------------------
+    /// </summary>
 
     public interface IMovement
     {
