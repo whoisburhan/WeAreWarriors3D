@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace WeAreFighters3D.BattleUnit
 {
@@ -6,14 +7,15 @@ namespace WeAreFighters3D.BattleUnit
     {
         // Controller for each battle unit
 
+        /// Movement
+        private IMovement movement;
         /// Health
         private IHealth health;
-        
-
+        /// HealthUI
+        /// Radar
         /// Attack
-        /// Movement
+        /// Animation
 
-        private IMovement movement;
 
         private void Awake()
         {
@@ -27,33 +29,26 @@ namespace WeAreFighters3D.BattleUnit
             movement.Move(MoveDir.Left);
         }
 
-        /// Animation
-        /// Radar
-        /// HealthUI
+        public void UpdateHealthInUI(float currentHealthPercetnage) 
+        {
+
+        }
+
     }
 
 
-   
-
-    public interface IHealth
-    {
-        public int MaxHealth { set; }
-
-        /// <returns>Alive 1 or Death 0</returns>
-        public bool GotDamage(int damageAmount);
-        public void Reset();
-    }
-
-
-    /// <summary>
-    ///---------------------------------------------------------------------------------------------------
-    /// </summary>
+    //---------------------------------------------------------------------------------------------------
 
     public interface IMovement
     {
         public float Speed { set; }
         public void Move(MoveDir moveDireaction);
     }
+    public interface IHealth
+    {
+        public int MaxHealth { set; }
 
-    // public interface Health
+        public float GotDamage(int damageAmount);
+        public void Reset();
+    }
 }
