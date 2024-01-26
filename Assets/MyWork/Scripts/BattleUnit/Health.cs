@@ -7,7 +7,14 @@ namespace WeAreFighters3D.BattleUnit
         private int maxHealth = 5;
         private int currentHealth;
 
-        public int MaxHealth { set => maxHealth = value; }
+        public int MaxHealth 
+        {
+            set
+            {
+                maxHealth = value;
+                Reset();
+            }
+        }
 
         public float GotDamage(int damageAmount)
         {
