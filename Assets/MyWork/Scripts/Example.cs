@@ -26,8 +26,6 @@ public class Example : MonoBehaviour
         {
             Debug.Log("Hit " + hit.collider.name);
         }
-
-        
     }
 
     private void OnDrawGizmos()

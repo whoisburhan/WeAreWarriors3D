@@ -44,21 +44,13 @@ namespace WeAreFighters3D.BattleUnit
 
     }
 
-    public class BattleUnitAttack : MonoBehaviour, IAttack
-    {
-        private int damageDealAmount = 2;
-        public int DamageDealAmount { set => damageDealAmount = value; }
 
-        public void Attack()
-        {
-            // Attack Enemy
-        }
-    }
 
     internal interface IAttack
     {
         public int DamageDealAmount { set; }
-        public void Attack();
+        public float AttackTimeInterval { set; }
+        public void Attack(Transform targetEnemy);
     }
 
     public interface IRadar
