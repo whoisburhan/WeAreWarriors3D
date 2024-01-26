@@ -13,7 +13,7 @@ namespace WeAreFighters3D.BattleUnit
         {
             currentHealth -= damageAmount;
 
-            return (float) currentHealth / (float) maxHealth; // return true if alive , false if dead
+            return currentHealth;
         }
 
         public void Reset() => currentHealth = maxHealth;
