@@ -5,8 +5,6 @@ namespace WeAreFighters3D.MeatSystem
 {
     public class MeatGenerator : MonoBehaviour, IMeatGenerator
     {
-        [SerializeField] MeatGeneratorData meatData;
-
         [SerializeField]
         private int currentMeatAmount = 0;
         private float timer = 0;

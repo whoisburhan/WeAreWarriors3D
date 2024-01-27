@@ -5,6 +5,8 @@ namespace WeAreFighters3D.BattleUnit
 {
     public class BattleUnitController : MonoBehaviour
     {
+        [SerializeField] BattleUnitData data;
+        [SerializeField] private LayerMask mask;
         // Controller for each battle unit
         /// Movement
         private IMovement movement;
@@ -20,7 +22,13 @@ namespace WeAreFighters3D.BattleUnit
 
 
         private void Awake() => Init();
-       // private void Update() => BattleUnitEngine();
+
+        private void Start()
+        {
+            UpdateData(data, MoveDir.Right, mask);
+        }
+
+        private void Update() => BattleUnitEngine();
 
         private void Init() 
         {
