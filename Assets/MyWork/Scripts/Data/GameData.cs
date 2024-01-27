@@ -1,19 +1,18 @@
 using System;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 namespace WeAreFighters3D.Data
 {
-
-
     public class GameData : MonoBehaviour
     {
         public static Func<float> OnGetMeatProductionSpeedRequest;
+        public static Func<BattleUnitTireData> OnGetCurretTireUnitsRequest;
 
         private IGameRowData gameRowData;
 
         [SerializeField] MeatGeneratorData meatData;
+        [SerializeField] BaseHealthData baseHealthData;
+        [SerializeField] TireEvolutionData tireEvolutionData;
 
         private void Awake()
         {
@@ -23,20 +22,26 @@ namespace WeAreFighters3D.Data
         private void OnEnable()
         {
             OnGetMeatProductionSpeedRequest += GetMeatProductionSpeed;
+            OnGetCurretTireUnitsRequest += GetCurrentTireUnits;
         }
         private void OnDisable()
         {
             OnGetMeatProductionSpeedRequest -= GetMeatProductionSpeed;
+            OnGetCurretTireUnitsRequest -= GetCurrentTireUnits;
         }
 
-        public float GetMeatProductionSpeed() 
+        private float GetMeatProductionSpeed() 
         {
             int productionSpeedIndex = gameRowData.State.MeatGeneratorIndex;
+            productionSpeedIndex = Mathf.Clamp(productionSpeedIndex, 0, meatData.meatData.Count - 1);
+            return meatData.meatData[productionSpeedIndex].MeatGeneratePerSecond;
+        }
 
-            Debug.Log($"productionSpeedIndex {productionSpeedIndex} : meatData.meatData[productionSpeedIndex].MeatGeneratePerSecond  {meatData.meatData[productionSpeedIndex].MeatGeneratePerSecond}");
-
-            return productionSpeedIndex < meatData.meatData.Count ? meatData.meatData[productionSpeedIndex].MeatGeneratePerSecond 
-                : meatData.meatData[meatData.meatData.Count-1].MeatGeneratePerSecond;
+        private BattleUnitTireData GetCurrentTireUnits() 
+        {
+            int currentActiveTireIndex = gameRowData.State.EvolutionIndex;
+            currentActiveTireIndex = Mathf.Clamp(currentActiveTireIndex, 0, tireEvolutionData.TireData.Count - 1);
+            return tireEvolutionData.TireData[currentActiveTireIndex].BattleUnitData;
         }
 
 
