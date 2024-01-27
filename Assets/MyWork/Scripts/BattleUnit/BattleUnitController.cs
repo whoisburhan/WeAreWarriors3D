@@ -20,7 +20,7 @@ namespace WeAreFighters3D.BattleUnit
 
 
         private void Awake() => Init();
-        private void Update() => BattleUnitEngine();
+       // private void Update() => BattleUnitEngine();
 
         private void Init() 
         {
