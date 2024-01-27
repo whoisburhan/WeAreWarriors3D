@@ -6,7 +6,6 @@ namespace WeAreFighters3D.BattleUnit
     public class BattleUnitController : MonoBehaviour
     {
         // Controller for each battle unit
-
         /// Movement
         private IMovement movement;
         /// Health
@@ -16,6 +15,7 @@ namespace WeAreFighters3D.BattleUnit
         /// Radar
         private IRadar radar;
         /// Attack
+        private IAttack unitAttack;
         /// Animation
 
 
@@ -25,6 +25,16 @@ namespace WeAreFighters3D.BattleUnit
             if (health == null) health = GetComponent<IHealth>();
             if (healthUI == null) healthUI = GetComponent<IHealthUI>();
             if (radar == null) radar = GetComponent<IRadar>();
+            if (unitAttack == null) unitAttack = GetComponent<IAttack>();
+        }
+
+        public void Init(BattleUnitData data)
+        {
+            movement.Speed = data.Speed;
+            health.MaxHealth = data.MaxHealth;
+            healthUI.MaxHealth = data.MaxHealth;
+            radar.RadarRange = data.RadarRange;
+            unitAttack.DamageDealAmount = data.Attack;
         }
 
         private void Update()
@@ -33,33 +43,17 @@ namespace WeAreFighters3D.BattleUnit
             if(detectObj == null) 
             {
                 // Movement
+                movement.Move(MoveDir.Left);
             }
             else 
             {
                 //Attack
+                unitAttack.Attack(detectObj);
             }
-            movement.Speed = 1.5f;
-            movement.Move(MoveDir.Left);
+
         }
 
     }
-
-
-
-    internal interface IAttack
-    {
-        public int DamageDealAmount { set; }
-        public float AttackTimeInterval { set; }
-        public void Attack(Transform targetEnemy);
-    }
-
-    public interface IRadar
-    {
-        public float RadarRange { set; }
-        public LayerMask DetectableObjLayerMask { set; }
-        public Transform DetectOponentUnit();
-    }
-
 
     //---------------------------------------------------------------------------------------------------
 
@@ -85,5 +79,19 @@ namespace WeAreFighters3D.BattleUnit
     {
         public int MaxHealth { set; }
         public void UpdateHealthInUI(int currentHealth);
+    }
+
+    public interface IRadar
+    {
+        public float RadarRange { set; }
+        public LayerMask DetectableObjLayerMask { set; }
+        public Transform DetectOponentUnit();
+    }
+
+    public interface IAttack
+    {
+        public int DamageDealAmount { set; }
+        public float AttackTimeInterval { set; }
+        public void Attack(Transform targetEnemy);
     }
 }
