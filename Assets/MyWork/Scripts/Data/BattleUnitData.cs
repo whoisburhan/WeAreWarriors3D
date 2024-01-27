@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName ="Battle Unit",menuName = "BattleUnit")]
+[CreateAssetMenu(fileName ="Battle Unit",menuName = "Data/Battle Unit")]
 public class BattleUnitData : ScriptableObject
 {
     public float Speed;

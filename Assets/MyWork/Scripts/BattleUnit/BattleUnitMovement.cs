@@ -12,16 +12,18 @@ namespace WeAreFighters3D.BattleUnit
     {
         private Rigidbody rb; 
         private float speed = 5f;
+        private MoveDir dir;
 
         public float Speed { set => speed = value;  }
+        public MoveDir MoveDir { set => dir = value; }
 
         private void Awake() => rb = GetComponent<Rigidbody>();
 
-        public void Move(MoveDir moveDirection)
+        public void Move()
         {
             Vector3 position = transform.position;
 
-            position.x += speed * (float)moveDirection * Time.deltaTime;
+            position.x += speed * (float)dir * Time.deltaTime;
 
             rb.MovePosition(position);
         }

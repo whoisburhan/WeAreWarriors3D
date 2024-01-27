@@ -19,7 +19,10 @@ namespace WeAreFighters3D.BattleUnit
         /// Animation
 
 
-        private void Awake()
+        private void Awake() => Init();
+        private void Update() => BattleUnitEngine();
+
+        private void Init() 
         {
             if (movement == null) movement = GetComponent<IMovement>();
             if (health == null) health = GetComponent<IHealth>();
@@ -27,32 +30,38 @@ namespace WeAreFighters3D.BattleUnit
             if (radar == null) radar = GetComponent<IRadar>();
             if (unitAttack == null) unitAttack = GetComponent<IAttack>();
         }
-
-        public void Init(BattleUnitData data)
+        public void UpdateData(BattleUnitData data, MoveDir moveDir, LayerMask oponentLayer)
         {
             movement.Speed = data.Speed;
+            movement.MoveDir = moveDir;
             health.MaxHealth = data.MaxHealth;
             healthUI.MaxHealth = data.MaxHealth;
             radar.RadarRange = data.RadarRange;
+            radar.DetectableObjLayerMask = oponentLayer;
             unitAttack.DamageDealAmount = data.Attack;
         }
 
-        private void Update()
+        private void BattleUnitEngine() 
         {
             var detectObj = radar.DetectOponentUnit();
-            if(detectObj == null) 
-            {
-                // Movement
-                movement.Move(MoveDir.Left);
-            }
-            else 
-            {
-                //Attack
-                unitAttack.Attack(detectObj);
-            }
 
+            if (detectObj == null) movement.Move();
+            else unitAttack.Attack(detectObj);
         }
 
+    }
+
+    public enum BattleUnitAnimationState
+    {
+        Idle, Chase
+    }
+    public class BattleUnitAnimation : MonoBehaviour, IAnimation 
+    {
+       
+    }
+
+    internal interface IAnimation
+    {
     }
 
     //---------------------------------------------------------------------------------------------------
@@ -65,7 +74,8 @@ namespace WeAreFighters3D.BattleUnit
     public interface IMovement
     {
         public float Speed { set; }
-        public void Move(MoveDir moveDireaction);
+        public MoveDir MoveDir { set; }
+        public void Move();
     }
     public interface IHealth : IReset
     {
