@@ -2,14 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using WeAreFighters3D.BattleUnit;
 
 namespace WeAreFighters3D.Spwaner
 {
     public class BattleUnitSpawner : MonoBehaviour, IUnitSpawner
     {
-        protected TireEvolutionData tireEvolutionData;
+        [SerializeField] protected MoveDir moveDir;
+        [SerializeField] protected LayerMask oponentLayer;
 
-        public TireEvolutionData TireEvolutionData { set => tireEvolutionData = value; }
+        protected BattleUnitTireData tiresAllUnitData;
+
+        public BattleUnitTireData TiresAllUnitData { set => tiresAllUnitData = value; }
 
         public void ActivateSpawn()
         {
@@ -21,7 +25,7 @@ namespace WeAreFighters3D.Spwaner
 
     public interface IUnitSpawner
     {
-        public TireEvolutionData TireEvolutionData { set; }
+        public BattleUnitTireData TiresAllUnitData { set; }
         public void ActivateSpawn();
     }
 }

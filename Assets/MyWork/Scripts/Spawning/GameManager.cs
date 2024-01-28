@@ -17,10 +17,10 @@ public class GameManager : MonoBehaviour
     {
         if(spawner == null) 
         {
-            spawner[0].TireEvolutionData = null;
+            spawner[0].TiresAllUnitData = null;
             spawner[0].ActivateSpawn();
 
-            spawner[1].TireEvolutionData = null;
+            spawner[1].TiresAllUnitData= null;
             spawner[1].ActivateSpawn();
         }
     }

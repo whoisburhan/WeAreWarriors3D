@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace WeAreFighters3D.BattleUnit
 {
-    public class BattleUnitController : MonoBehaviour
+    public class BattleUnitController : MonoBehaviour, IBattleUnitController
     {
         [SerializeField] BattleUnitData data;
         [SerializeField] private LayerMask mask;
@@ -56,6 +56,11 @@ namespace WeAreFighters3D.BattleUnit
             else unitAttack.Attack(detectObj);
         }
 
+    }
+
+    public interface IBattleUnitController
+    {
+        public void UpdateData(BattleUnitData data, MoveDir moveDir, LayerMask oponentLayer);
     }
 
     public enum BattleUnitAnimationState
