@@ -14,5 +14,6 @@ public class UnitTire
     public string UnitName;
     public int UnitUnlockPrice;
     public Sprite UnitPortrait;
+    public BattleUnitData UnitData;
     public GameObject UnitPrefab;
 }
