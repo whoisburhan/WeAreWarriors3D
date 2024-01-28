@@ -17,7 +17,7 @@ namespace WeAreFighters3D.Spwaner
 
         public void ActivateSpawn()
         {
-            
+
         }
 
 

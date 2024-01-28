@@ -6,6 +6,7 @@ namespace WeAreFighters3D.Data
         public int MeatGeneratorIndex = 0;
         public int BaseHealthIndex = 0;
         public int EvolutionIndex = 0;
+        public int EnemyEvolutionIndex = 0;
         public int CurrentTireUnlockedBattleUnitIndex = 0;
         public int CoinAmount = 0;
     }

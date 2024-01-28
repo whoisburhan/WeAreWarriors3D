@@ -5,6 +5,13 @@ namespace WeAreFighters3D.Spwaner
 {
     public class PlayerUnitSpawner : BattleUnitSpawner
     {
+        private void Update()
+        {
+            if(Input.GetKeyDown(KeyCode.Space)) 
+            {
+                SpawnPlayerUnit(0);
+            }
+        }
         public void SpawnPlayerUnit(int spawnIndex)
         {
             if(spawnIndex >= tiresAllUnitData.UnitTireData.Count)
@@ -14,7 +21,7 @@ namespace WeAreFighters3D.Spwaner
             }
 
             var data = tiresAllUnitData.UnitTireData[spawnIndex];
-            var go = ObjectPoolManager.SpawnObject(data.UnitPrefab, transform.position, Quaternion.identity);
+            var go = ObjectPoolManager.SpawnObject(data.UnitPrefab, transform.position, transform.rotation);
             
             var unitController = go.GetComponent<IBattleUnitController>();
             unitController.UpdateData(data.UnitData, moveDir, oponentLayer);

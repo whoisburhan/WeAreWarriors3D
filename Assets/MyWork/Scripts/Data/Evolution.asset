@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: Evolution
   m_EditorClassIdentifier: 
   TireData:
-  - BattleUnitData: {fileID: 11400000, guid: bdfa13a081f223448ba433323f596ec9, type: 2}
+  - BattleUnitTireData: {fileID: 11400000, guid: bdfa13a081f223448ba433323f596ec9,
+      type: 2}
     EvolutionCost: 0
-  - BattleUnitData: {fileID: 11400000, guid: bdfa13a081f223448ba433323f596ec9, type: 2}
+  - BattleUnitTireData: {fileID: 11400000, guid: bdfa13a081f223448ba433323f596ec9,
+      type: 2}
     EvolutionCost: 2000
-  - BattleUnitData: {fileID: 11400000, guid: bdfa13a081f223448ba433323f596ec9, type: 2}
+  - BattleUnitTireData: {fileID: 11400000, guid: bdfa13a081f223448ba433323f596ec9,
+      type: 2}
     EvolutionCost: 4000

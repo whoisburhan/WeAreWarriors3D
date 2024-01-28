@@ -12,6 +12,6 @@ public class TireEvolutionData : ScriptableObject
 [Serializable]
 public class TireData 
 {
-    public BattleUnitTireData BattleUnitData;
+    public BattleUnitTireData BattleUnitTireData;
     public int EvolutionCost;
 }
