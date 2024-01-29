@@ -8,6 +8,6 @@ namespace WeAreFighters3D.Data
         public int EvolutionIndex = 0;
         public int EnemyEvolutionIndex = 0;
         public int CurrentTireUnlockedBattleUnitIndex = 0;
-        public int CoinAmount = 0;
+        public int CoinAmount = 2000;
     }
 }

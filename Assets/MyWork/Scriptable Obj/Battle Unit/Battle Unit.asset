@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32e7b48316acd5b4181c3649a13be501, type: 3}
   m_Name: Battle Unit
   m_EditorClassIdentifier: 
-  Speed: 2
+  Speed: 5
   MaxHealth: 10
-  RadarRange: 1
+  RadarRange: 2
   Attack: 5

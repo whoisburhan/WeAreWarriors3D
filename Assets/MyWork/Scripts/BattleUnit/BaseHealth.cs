@@ -1,12 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 namespace WeAreFighters3D.BattleUnit
 {
     public class BaseHealth : MonoBehaviour, IHealthUI
     {
         [SerializeField] private Image healthIndicator;
-        [SerializeField] private Text healthAmountText;
+        [SerializeField] private TextMeshProUGUI healthAmountText;
 
         private int maxHealth = 5;
         public int MaxHealth
