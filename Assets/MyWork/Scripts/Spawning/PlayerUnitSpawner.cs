@@ -5,12 +5,14 @@ namespace WeAreFighters3D.Spwaner
 {
     public class PlayerUnitSpawner : BattleUnitSpawner
     {
+        private const int PLAYER_LAYER = 6;  // Test
         private void Update()
         {
             if(Input.GetKeyDown(KeyCode.Space)) 
             {
                 SpawnPlayerUnit(0);
             }
+
         }
         public void SpawnPlayerUnit(int spawnIndex)
         {
@@ -21,8 +23,8 @@ namespace WeAreFighters3D.Spwaner
             }
 
             var data = tiresAllUnitData.UnitTireData[spawnIndex];
-            var go = ObjectPoolManager.SpawnObject(data.UnitPrefab, transform.position, transform.rotation);
-            
+            var go = ObjectPoolManager.SpawnObject(data.UnitPrefab, transform.position, transform.rotation, PoolType.BattleUnit);
+            go.layer = PLAYER_LAYER;
             var unitController = go.GetComponent<IBattleUnitController>();
             unitController.UpdateData(data.UnitData, moveDir, oponentLayer);
         }

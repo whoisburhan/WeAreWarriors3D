@@ -12,7 +12,7 @@ namespace WeAreFighters3D.BattleUnit
     {
         private Rigidbody rb; 
         private float speed = 5f;
-        private MoveDir dir;
+        [SerializeField]private MoveDir dir;
 
         public float Speed { set => speed = value;  }
         public MoveDir MoveDir { set => dir = value; }
@@ -24,7 +24,6 @@ namespace WeAreFighters3D.BattleUnit
             Vector3 position = transform.position;
 
             position.x += speed * (float)dir * Time.deltaTime;
-
             rb.MovePosition(position);
         }
     }

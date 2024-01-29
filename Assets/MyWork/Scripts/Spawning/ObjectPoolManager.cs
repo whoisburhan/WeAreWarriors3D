@@ -2,11 +2,25 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+public enum PoolType
+{
+    BattleUnit, Particles, None
+}
+
 public class ObjectPoolManager : MonoBehaviour
 {
     public static List<PooledIbjectInfo> ObjectPools = new List<PooledIbjectInfo>();
 
-    public static GameObject SpawnObject(GameObject objectToSpwan, Vector3 spawnPosition, Quaternion spawnRotation) 
+    public static PoolType PoolingType;
+
+    private GameObject objectPoolEmptyHolder;
+    private static GameObject battleUnitEmpty;
+    private static GameObject particlesEmpty;
+
+
+    private void Awake() => SetUpEmpties();
+
+    public static GameObject SpawnObject(GameObject objectToSpwan, Vector3 spawnPosition, Quaternion spawnRotation, PoolType poolType = PoolType.None) 
     {
         PooledIbjectInfo pool = ObjectPools.Find(p => p.LookUpString == objectToSpwan.name);
 
@@ -22,7 +36,12 @@ public class ObjectPoolManager : MonoBehaviour
 
         if(spawnableObj == null) 
         {
+            // Find the parent of the empty object
+            GameObject parentObj = SetParentObject(poolType);
+            
             spawnableObj = Instantiate(objectToSpwan, spawnPosition, spawnRotation);
+
+            if (parentObj != null) spawnableObj.transform.SetParent(parentObj.transform);
         }
         else 
         {
@@ -48,6 +67,33 @@ public class ObjectPoolManager : MonoBehaviour
         {
             obj.SetActive(false);
             pool.InactiveIbjects.Add(obj);
+        }
+    }
+
+
+
+    private void SetUpEmpties()
+    {
+        objectPoolEmptyHolder = new GameObject("Pooled Objects");
+
+        battleUnitEmpty = new GameObject("Battle Units");
+        battleUnitEmpty.transform.SetParent(objectPoolEmptyHolder.transform);
+
+        particlesEmpty = new GameObject("Particles");
+        particlesEmpty.transform.SetParent(objectPoolEmptyHolder.transform);
+    }
+
+    private static GameObject SetParentObject(PoolType poolType) 
+    {
+        switch (poolType) 
+        {
+            case PoolType.BattleUnit:
+                return battleUnitEmpty;
+            case PoolType.Particles:
+                return particlesEmpty;
+            case PoolType.None: 
+                return null;
+            default: return null;
         }
     }
 }

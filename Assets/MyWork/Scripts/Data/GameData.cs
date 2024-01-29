@@ -54,7 +54,6 @@ namespace WeAreFighters3D.Data
                 return null;
             }
 
-            Debug.Log("AAAAAA " + tireEvolutionData.TireData[evolutionIndex].BattleUnitTireData.name);
             return tireEvolutionData.TireData[evolutionIndex].BattleUnitTireData;
         }
 
