@@ -7,4 +7,5 @@ public class BattleUnitData : ScriptableObject
     public int MaxHealth;
     public float RadarRange;
     public int Attack;
+    public int UnitGenerationCost;
 }

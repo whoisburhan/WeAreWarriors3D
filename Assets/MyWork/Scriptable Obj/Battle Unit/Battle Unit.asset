@@ -16,3 +16,4 @@ MonoBehaviour:
   MaxHealth: 10
   RadarRange: 10
   Attack: 5
+  UnitGenerationCost: 5

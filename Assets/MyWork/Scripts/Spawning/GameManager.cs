@@ -3,15 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using WeAreFighters3D.Data;
+using WeAreFighters3D.MeatSystem;
 using WeAreFighters3D.Spwaner;
 
 public class GameManager : MonoBehaviour
 {
     private IUnitSpawner[] spawner;
+    private IMeatGenerator meatGenerator;
+
+    private BattleUnitTireData playerUnitTireData;
+    private BattleUnitTireData enemyUnitTireData;
 
     private void Awake()
     {
         spawner = GetComponentsInChildren<IUnitSpawner>();
+        meatGenerator = GetComponent<IMeatGenerator>();
     }
 
     private void Start()
@@ -23,12 +29,30 @@ public class GameManager : MonoBehaviour
     {
         if(spawner != null) 
         {
-            spawner[0].TiresAllUnitData = GameData.OnGetCurretTireUnitsRequest(PlayerType.Player);
+            playerUnitTireData = GameData.OnGetCurretTireUnitsRequest(PlayerType.Player);
+            spawner[0].TiresAllUnitData = playerUnitTireData;
             spawner[0].ActivateSpawn();
 
-            spawner[1].TiresAllUnitData = GameData.OnGetCurretTireUnitsRequest(PlayerType.Enemy);
+            enemyUnitTireData = GameData.OnGetCurretTireUnitsRequest(PlayerType.Enemy);
+            spawner[1].TiresAllUnitData = enemyUnitTireData;
             spawner[1].ActivateSpawn();
+        }
+
+        if(meatGenerator != null) 
+        {
+            meatGenerator.MeatProductionSpeed = GameData.OnGetMeatProductionSpeedRequest();
+            meatGenerator.StartMeatGeneration(true);
         }
     }
 
+    public void SpawnPlayerUnitReq(int batleUnitIndex) 
+    {
+        int cost = playerUnitTireData.UnitTireData[batleUnitIndex].UnitData.UnitGenerationCost;
+
+        if (meatGenerator.MeatAmount >= cost) 
+        {
+            spawner[0].SpawnUnit(batleUnitIndex);
+            meatGenerator.MeatAmount -= cost;
+        }
+    }
 }

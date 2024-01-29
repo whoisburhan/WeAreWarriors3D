@@ -11,11 +11,11 @@ namespace WeAreFighters3D.Spwaner
         {
             if (Input.GetKeyDown(KeyCode.X))
             {
-                SpawnPlayerUnit(0);
+                //SpawnPlayerUnit(0);
             }
 
         }
-        public void SpawnPlayerUnit(int spawnIndex)
+        public override void SpawnUnit(int spawnIndex)
         {
             if (spawnIndex >= tiresAllUnitData.UnitTireData.Count)
             {
