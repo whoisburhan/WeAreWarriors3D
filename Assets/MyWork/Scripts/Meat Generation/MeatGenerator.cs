@@ -9,7 +9,6 @@ namespace WeAreFighters3D.MeatSystem
         [SerializeField] UnityEvent<float> MeatGenerationProgress;
         [SerializeField] UnityEvent<string> UpdateMeatAmountEvent;
 
-        [SerializeField]
         private int currentMeatAmount = 0;
         private float timer = 0;
         private float meatProductionSpeed;
