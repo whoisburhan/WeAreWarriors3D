@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2120877037805170300}
   - component: {fileID: 7666248443210467184}
   - component: {fileID: 1875083512240628919}
+  - component: {fileID: 6985256973588021240}
   m_Layer: 5
   m_Name: BattleUnitButtonPrefab
   m_TagString: Untagged
@@ -124,8 +125,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: WeAreFighters3D.Spwaner.PlayerUnitSpawner, Assembly-CSharp
-        m_MethodName: SpawnPlayerUnit
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: SpawnPlayerUnitReq
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -135,6 +136,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &6985256973588021240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2972989700435417622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23d362c5821387545a76d1f218202476, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UnitIcon: {fileID: 7724168069277047313}
+  m_UnitProductionCost: {fileID: 3068851297905392430}
 --- !u!1 &4179886431222069245
 GameObject:
   m_ObjectHideFlags: 0

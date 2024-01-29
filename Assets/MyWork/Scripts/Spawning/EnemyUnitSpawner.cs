@@ -7,11 +7,21 @@ namespace WeAreFighters3D.Spwaner
     {
         private const int ENEMY_LAYER = 7; //Test
 
+        [SerializeField] private float spawnIntervalTime = 10f;
+        float timer = 0;
+        bool canSpawn = false;
+
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.X))
+            if (canSpawn) 
             {
-                //SpawnPlayerUnit(0);
+                timer -= Time.deltaTime;
+                
+                if(timer <= 0 ) 
+                {
+                    SpawnUnit(Random.Range(0, tiresAllUnitData.UnitTireData.Count));
+                    timer = spawnIntervalTime;
+                }
             }
 
         }
@@ -28,6 +38,12 @@ namespace WeAreFighters3D.Spwaner
             go.layer = ENEMY_LAYER;
             var unitController = go.GetComponent<IBattleUnitController>();
             unitController.UpdateData(data.UnitData, moveDir, oponentLayer);
+        }
+
+        public override void ActivateSpawn()
+        {
+            canSpawn = true;
+            timer = spawnIntervalTime;
         }
     }
 }

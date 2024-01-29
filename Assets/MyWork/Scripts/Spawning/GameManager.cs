@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
-using UnityEngine.Events;
 using WeAreFighters3D.Data;
 using WeAreFighters3D.MeatSystem;
 using WeAreFighters3D.Spwaner;
@@ -14,17 +12,10 @@ public class GameManager : MonoBehaviour
     private BattleUnitTireData playerUnitTireData;
     private BattleUnitTireData enemyUnitTireData;
 
-     
-
     private void Awake()
     {
         spawner = GetComponentsInChildren<IUnitSpawner>();
         meatGenerator = GetComponent<IMeatGenerator>();
-    }
-
-    private void Start()
-    {
-        StartGame();
     }
 
     public void StartGame() 
@@ -49,7 +40,7 @@ public class GameManager : MonoBehaviour
 
     public void SpawnPlayerUnitReq(int batleUnitIndex) 
     {
-        int cost = playerUnitTireData.UnitTireData[batleUnitIndex].UnitData.UnitGenerationCost;
+        int cost = playerUnitTireData.UnitTireData[batleUnitIndex].UnitGenerationCost;
 
         if (meatGenerator.MeatAmount >= cost) 
         {

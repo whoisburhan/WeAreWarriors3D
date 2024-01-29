@@ -16,4 +16,5 @@ public class UnitTire
     public Sprite UnitPortrait;
     public BattleUnitData UnitData;
     public GameObject UnitPrefab;
+    public int UnitGenerationCost;
 }

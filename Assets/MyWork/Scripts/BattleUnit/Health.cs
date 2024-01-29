@@ -16,7 +16,7 @@ namespace WeAreFighters3D.BattleUnit
             }
         }
 
-        public float GotDamage(int damageAmount)
+        public int GotDamage(int damageAmount)
         {
             currentHealth -= damageAmount;
 

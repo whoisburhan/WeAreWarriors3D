@@ -15,7 +15,7 @@ namespace WeAreFighters3D.Spwaner
 
         public BattleUnitTireData TiresAllUnitData { set => tiresAllUnitData = value; }
 
-        public void ActivateSpawn()
+        public virtual void ActivateSpawn()
         {
 
         }
