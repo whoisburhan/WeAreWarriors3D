@@ -20,7 +20,13 @@ public class BattleUnitSelectorUI : MonoBehaviour
     {
         this.battleUnitImg.sprite = battleUnitImg;
         battleUnitName.text = name;
+        battleUnitPurchasePrice.text = PurchasePriceInText(purchasePrice);
+    }
 
+    public void IsPurchased(bool isPurchased) 
+    {
+        if(isPurchased) battleUnitPurchasePrice.transform.parent.gameObject.SetActive(false);
+        else battleUnitPurchasePrice.transform.parent.gameObject.SetActive(true);
     }
 
     private string PurchasePriceInText(int purchasePrice) 

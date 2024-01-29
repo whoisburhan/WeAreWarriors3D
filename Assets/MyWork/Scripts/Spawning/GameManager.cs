@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using WeAreFighters3D.Data;
 using WeAreFighters3D.MeatSystem;
 using WeAreFighters3D.Spwaner;
@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
 
     private BattleUnitTireData playerUnitTireData;
     private BattleUnitTireData enemyUnitTireData;
+
+     
 
     private void Awake()
     {
@@ -55,4 +57,6 @@ public class GameManager : MonoBehaviour
             meatGenerator.MeatAmount -= cost;
         }
     }
+
+    
 }

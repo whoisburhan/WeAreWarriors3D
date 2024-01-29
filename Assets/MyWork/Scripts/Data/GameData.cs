@@ -8,6 +8,8 @@ namespace WeAreFighters3D.Data
         public static Func<float> OnGetMeatProductionSpeedRequest;
         public static Func<PlayerType, BattleUnitTireData> OnGetCurretTireUnitsRequest;
 
+        public static Action<BattleUnitTireData, int> OnUpdateTireData;
+
         private IGameRowData gameRowData;
 
         [SerializeField] MeatGeneratorData meatData;
@@ -29,6 +31,12 @@ namespace WeAreFighters3D.Data
             OnGetMeatProductionSpeedRequest -= GetMeatProductionSpeed;
             OnGetCurretTireUnitsRequest -= GetTireEvolutionData;
         }
+
+        private void Start()
+        {
+            UpdateTire();
+        }
+
 
         private float GetMeatProductionSpeed()
         {
@@ -57,6 +65,11 @@ namespace WeAreFighters3D.Data
             return tireEvolutionData.TireData[evolutionIndex].BattleUnitTireData;
         }
 
+        private void UpdateTire()
+        {
+            var unitTireData = tireEvolutionData.TireData[gameRowData.State.EvolutionIndex];
+            OnUpdateTireData?.Invoke(unitTireData.BattleUnitTireData, gameRowData.State.CurrentTireUnlockedBattleUnitIndex);
+        }
     }
 
     public enum PlayerType 

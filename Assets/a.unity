@@ -451,6 +451,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 198762141}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &198762143 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3038794863433256392, guid: 68058db9a0544e64f8e5ccda65edbe68,
+    type: 3}
+  m_PrefabInstance: {fileID: 198762141}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aa6d2c302075ed4e92b1aa350ea122a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &199213915
 GameObject:
   m_ObjectHideFlags: 0
@@ -2569,6 +2581,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 753833012}
   m_CullTransparentMesh: 1
+--- !u!114 &798595432 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3038794863433256392, guid: 68058db9a0544e64f8e5ccda65edbe68,
+    type: 3}
+  m_PrefabInstance: {fileID: 5648039554862859324}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aa6d2c302075ed4e92b1aa350ea122a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &866601660
 GameObject:
   m_ObjectHideFlags: 0
@@ -4682,6 +4706,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1440885446}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1440885448 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3038794863433256392, guid: 68058db9a0544e64f8e5ccda65edbe68,
+    type: 3}
+  m_PrefabInstance: {fileID: 1440885446}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aa6d2c302075ed4e92b1aa350ea122a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1463686407
 GameObject:
   m_ObjectHideFlags: 0
@@ -5529,6 +5565,7 @@ GameObject:
   - component: {fileID: 1758711388}
   - component: {fileID: 1758711387}
   - component: {fileID: 1758711389}
+  - component: {fileID: 1758711390}
   m_Layer: 5
   m_Name: Upgrade Panel
   m_TagString: Untagged
@@ -5611,6 +5648,22 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
+--- !u!114 &1758711390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1758711385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b168ddecdca8b747a6967b3f5022c75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  battleUnitSelectorUIs:
+  - {fileID: 798595432}
+  - {fileID: 198762143}
+  - {fileID: 1440885448}
 --- !u!1 &1761868240
 GameObject:
   m_ObjectHideFlags: 0
@@ -6568,60 +6621,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3300011447614425927, guid: 68058db9a0544e64f8e5ccda65edbe68,
-        type: 3}
-      propertyPath: m_FontData.m_VerticalOverflow
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3300011447614425927, guid: 68058db9a0544e64f8e5ccda65edbe68,
-        type: 3}
-      propertyPath: m_FontData.m_HorizontalOverflow
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3525445292429531344, guid: 68058db9a0544e64f8e5ccda65edbe68,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3525445292429531344, guid: 68058db9a0544e64f8e5ccda65edbe68,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3525445292429531344, guid: 68058db9a0544e64f8e5ccda65edbe68,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3525445292429531344, guid: 68058db9a0544e64f8e5ccda65edbe68,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5093490323141918258, guid: 68058db9a0544e64f8e5ccda65edbe68,
         type: 3}
       propertyPath: m_Name
       value: BattleUnit
-      objectReference: {fileID: 0}
-    - target: {fileID: 8111390133624713467, guid: 68058db9a0544e64f8e5ccda65edbe68,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8111390133624713467, guid: 68058db9a0544e64f8e5ccda65edbe68,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8111390133624713467, guid: 68058db9a0544e64f8e5ccda65edbe68,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8111390133624713467, guid: 68058db9a0544e64f8e5ccda65edbe68,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
