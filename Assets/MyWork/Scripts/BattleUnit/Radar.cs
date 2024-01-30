@@ -19,12 +19,5 @@ namespace WeAreFighters3D.BattleUnit
             return null;
         }
 
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawWireCube((transform.position + transform.forward * radarRange)/2,
-                new Vector3(radarRange, transform.lossyScale.y, transform.lossyScale.z));
-        }
-
     }
 }

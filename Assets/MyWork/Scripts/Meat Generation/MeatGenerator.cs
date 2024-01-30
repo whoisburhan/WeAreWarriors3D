@@ -67,11 +67,4 @@ namespace WeAreFighters3D.MeatSystem
 
         private float MeatGeneratorFormula(float meatPerSecond) =>  1 / meatPerSecond;
     }
-
-    public interface IMeatGenerator
-    {
-        public float MeatProductionSpeed { set; }
-        public int MeatAmount { get;set; }
-        public void StartMeatGeneration(bool startGeneration);
-    }
 }
