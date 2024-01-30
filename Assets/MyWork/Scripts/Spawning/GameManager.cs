@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     private IUnitSpawner[] spawner;
     private IMeatGenerator meatGenerator;
+    private IBaseController[] baseController;
 
     private BattleUnitTireData playerUnitTireData;
     private BattleUnitTireData enemyUnitTireData;
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour
     {
         spawner = GetComponentsInChildren<IUnitSpawner>();
         meatGenerator = GetComponent<IMeatGenerator>();
+        baseController = GetComponentsInChildren<IBaseController>();
     }
 
     public void StartGame() 
@@ -35,6 +37,13 @@ public class GameManager : MonoBehaviour
         {
             meatGenerator.MeatProductionSpeed = GameData.OnGetMeatProductionSpeedRequest();
             meatGenerator.StartMeatGeneration(true);
+        }
+
+        if(baseController != null) 
+        {
+            baseController[0].BaseHealth = GameData.OnGetBaseHealthDataRequest();
+            
+            // Enemy Base Health Data Not Implemented Yet :(
         }
     }
 

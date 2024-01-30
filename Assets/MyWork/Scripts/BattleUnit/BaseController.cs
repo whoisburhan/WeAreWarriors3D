@@ -7,7 +7,7 @@ public class BaseController : MonoBehaviour,IBaseController
 {
     private IHealth health;
     private IHealthUI healthUI;
-    public int BaseHealth { set => throw new System.NotImplementedException(); }
+    public int BaseHealth { set => UpdateData(value); }
 
     private void Awake() 
     {
@@ -18,7 +18,7 @@ public class BaseController : MonoBehaviour,IBaseController
     private void Start()
     {
         Debug.Log("Ghhhhh");
-        UpdateData(100);
+       // UpdateData(100);
     }
 
     public void UpdateData(int maxHealth)
@@ -36,6 +36,14 @@ public class BaseController : MonoBehaviour,IBaseController
         if (currentHealth <= 0)
         {
             Debug.Log("Game Over");
+            if (gameObject.CompareTag("Player")) 
+            {
+
+            }
+            else 
+            {
+
+            }
         }
     }
 }

@@ -7,6 +7,7 @@ namespace WeAreFighters3D.Data
     {
         public static Func<float> OnGetMeatProductionSpeedRequest;
         public static Func<PlayerType, BattleUnitTireData> OnGetCurretTireUnitsRequest;
+        public static Func<int> OnGetBaseHealthDataRequest;
 
         public static Action<BattleUnitTireData, int> OnUpdateTireData;
 
@@ -25,11 +26,13 @@ namespace WeAreFighters3D.Data
         {
             OnGetMeatProductionSpeedRequest += GetMeatProductionSpeed;
             OnGetCurretTireUnitsRequest += GetTireEvolutionData;
+            OnGetBaseHealthDataRequest += GetBaseHealth;
         }
         private void OnDisable()
         {
             OnGetMeatProductionSpeedRequest -= GetMeatProductionSpeed;
             OnGetCurretTireUnitsRequest -= GetTireEvolutionData;
+            OnGetBaseHealthDataRequest -= GetBaseHealth;
         }
 
         private void Start()
@@ -70,6 +73,8 @@ namespace WeAreFighters3D.Data
             var unitTireData = tireEvolutionData.TireData[gameRowData.State.EvolutionIndex];
             OnUpdateTireData?.Invoke(unitTireData.BattleUnitTireData, gameRowData.State.CurrentTireUnlockedBattleUnitIndex);
         }
+
+        private int GetBaseHealth() => baseHealthData.healthData[gameRowData.State.BaseHealthIndex].MaxHealth;
     }
 
     public enum PlayerType 

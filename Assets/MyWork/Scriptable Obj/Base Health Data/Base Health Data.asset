@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Base Health Data
   m_EditorClassIdentifier: 
   healthData:
-  - MeatGeneratePerSecond: 6
+  - MaxHealth: 50
     UpgradePrice: 0
-  - MeatGeneratePerSecond: 8
+  - MaxHealth: 100
     UpgradePrice: 10
-  - MeatGeneratePerSecond: 10
+  - MaxHealth: 200
     UpgradePrice: 20
-  - MeatGeneratePerSecond: 12
+  - MaxHealth: 300
     UpgradePrice: 40
-  - MeatGeneratePerSecond: 14
+  - MaxHealth: 400
     UpgradePrice: 80

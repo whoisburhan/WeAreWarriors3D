@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Base Health Data", menuName = "Data/Base Health Data")]
 public class BaseHealthData : ScriptableObject
 {
-    public List<MeatData> healthData;
+    public List<BaseHealth> healthData;
 }
 
 [Serializable]
