@@ -13,19 +13,12 @@ public class BattleUnitSelectorUI : MonoBehaviour
     {
         this.battleUnitImg.sprite = battleUnitImg;
         battleUnitName.text = name;
-        battleUnitPurchasePrice.text = PurchasePriceInText(purchasePrice);
+        battleUnitPurchasePrice.text = CoinInTextForm.CoinInText(purchasePrice);
     }
 
     public void IsPurchased(bool isPurchased) 
     {
         if(isPurchased) battleUnitPurchasePrice.transform.parent.gameObject.SetActive(false);
         else battleUnitPurchasePrice.transform.parent.gameObject.SetActive(true);
-    }
-
-    private string PurchasePriceInText(int purchasePrice) 
-    {
-        if(purchasePrice < 1000) return purchasePrice.ToString();
-        else if(purchasePrice >= 1000 && purchasePrice < 1000000) return (purchasePrice /1000f).ToString("F1")+"K";
-        else return (purchasePrice / 1000000f).ToString("F1")+"M";
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace WeAreFighters3D.Data
 {
@@ -8,8 +9,12 @@ namespace WeAreFighters3D.Data
         public static Func<float> OnGetMeatProductionSpeedRequest;
         public static Func<PlayerType, BattleUnitTireData> OnGetCurretTireUnitsRequest;
         public static Func<int> OnGetBaseHealthDataRequest;
+        public static Func<int> OnGetTotalCoin;
 
         public static Action<BattleUnitTireData, int> OnUpdateTireData;
+        public static Action<int> OnUpdateTotalCoin;
+
+        public UnityEvent<string> OnUpdateCoinInString;
 
         private IGameRowData gameRowData;
 
@@ -27,17 +32,22 @@ namespace WeAreFighters3D.Data
             OnGetMeatProductionSpeedRequest += GetMeatProductionSpeed;
             OnGetCurretTireUnitsRequest += GetTireEvolutionData;
             OnGetBaseHealthDataRequest += GetBaseHealth;
+            OnGetTotalCoin += GetTotalCoin;
+            OnUpdateTotalCoin += UpdateTotalCoin;
         }
         private void OnDisable()
         {
             OnGetMeatProductionSpeedRequest -= GetMeatProductionSpeed;
             OnGetCurretTireUnitsRequest -= GetTireEvolutionData;
             OnGetBaseHealthDataRequest -= GetBaseHealth;
+            OnGetTotalCoin -= GetTotalCoin;
+            OnUpdateTotalCoin -= UpdateTotalCoin;
         }
 
         private void Start()
         {
             UpdateTire();
+            UpdateCoinUI();
         }
 
 
@@ -75,6 +85,22 @@ namespace WeAreFighters3D.Data
         }
 
         private int GetBaseHealth() => baseHealthData.healthData[gameRowData.State.BaseHealthIndex].MaxHealth;
+
+        private void UpdateTotalCoin(int amount)
+        {
+            Debug.Log($"UpdateTotalCoin(int amount) {amount}");
+            gameRowData.State.CoinAmount += amount;
+            if(gameRowData.State.CoinAmount < 0) gameRowData.State.CoinAmount = 0;
+            
+            gameRowData.Save();
+        }
+
+        private int GetTotalCoin() => gameRowData.State.CoinAmount;
+
+        private void UpdateCoinUI() 
+        {
+            OnUpdateCoinInString?.Invoke(CoinInTextForm.CoinInText(gameRowData.State.CoinAmount));
+        }
     }
 
     public enum PlayerType 

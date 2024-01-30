@@ -32,12 +32,12 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
-        OnGameEnd += OnGameEndUIUpdateFunc;
+        OnGameEnd += OnGameEndAction;
         OnUpdateMatchCoinCollection += UpdateInMatchCoinCollection;
     }
     private void OnDisable()
     { 
-        OnGameEnd -= OnGameEndUIUpdateFunc;
+        OnGameEnd -= OnGameEndAction;
         OnUpdateMatchCoinCollection -= UpdateInMatchCoinCollection;
     }
     public void StartGame() 
@@ -82,14 +82,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void OnGameEndUIUpdateFunc() 
+    private void OnGameEndAction() 
     {
+        Debug.Log($"Match Coin {matchCointCollected}");
+        GameData.OnUpdateTotalCoin(matchCointCollected);
         OnGameEndUIUpdate?.Invoke();
     }
 
     private void UpdateInMatchCoinCollection(int rewardCoin)
     {
+        Debug.Log(rewardCoin.ToString());
         matchCointCollected += rewardCoin;
         OnMatchCoinUpdate?.Invoke(matchCointCollected.ToString());
     }
+
 }

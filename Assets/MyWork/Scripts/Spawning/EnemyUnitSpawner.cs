@@ -37,7 +37,7 @@ namespace WeAreFighters3D.Spwaner
             }
 
             var data = tiresAllUnitData.UnitTireData[spawnIndex];
-            var go = ObjectPoolManager.SpawnObject(data.UnitPrefab, transform.position, transform.rotation,PoolType.Particles);
+            var go = ObjectPoolManager.SpawnObject(data.UnitPrefab, transform.position, transform.rotation,PoolType.BattleUnit);
             go.layer = ENEMY_LAYER;
             var unitController = go.GetComponent<IBattleUnitController>();
             unitController.UpdateData(data.UnitData, moveDir, oponentLayer);
