@@ -5422,7 +5422,7 @@ GameObject:
   - component: {fileID: 1511790628}
   - component: {fileID: 1511790627}
   m_Layer: 5
-  m_Name: ProductionRate
+  m_Name: HP Amount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5859,6 +5859,12 @@ MonoBehaviour:
   - {fileID: 798595432}
   - {fileID: 198762143}
   - {fileID: 1440885448}
+  m_NextMeatGenerationSpeedText: {fileID: 1375605596}
+  m_NextMeatGenerationSpeedCostText: {fileID: 206210730}
+  m_NextMeatGenerationSpeedButton: {fileID: 471796341}
+  m_NextBaseHpText: {fileID: 1511790627}
+  m_NextBaseHpCostText: {fileID: 1362742947}
+  m_NextBaseHpButton: {fileID: 1922987509}
 --- !u!1 &1761868240
 GameObject:
   m_ObjectHideFlags: 0

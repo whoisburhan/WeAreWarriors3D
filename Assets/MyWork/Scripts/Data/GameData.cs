@@ -13,6 +13,8 @@ namespace WeAreFighters3D.Data
 
         public static Action<BattleUnitTireData, int> OnUpdateTireData;
         public static Action<int> OnUpdateTotalCoin;
+        public static Action<MeatData> OnUpdatNextMeatProductionSpeed;
+        public static Action<BaseHealth> OnUpdateNextBaseHp;
 
         public UnityEvent<string> OnUpdateCoinInString;
 
@@ -47,7 +49,7 @@ namespace WeAreFighters3D.Data
         private void Start()
         {
             UpdateTire();
-            UpdateCoinUI();
+            UpdateUI();
         }
 
 
@@ -97,9 +99,24 @@ namespace WeAreFighters3D.Data
 
         private int GetTotalCoin() => gameRowData.State.CoinAmount;
 
-        private void UpdateCoinUI() 
+        private void UpdateUI() 
         {
             OnUpdateCoinInString?.Invoke(CoinInTextForm.CoinInText(gameRowData.State.CoinAmount));
+
+            int nextMeatProductionSpeedIndex = gameRowData.State.MeatGeneratorIndex + 1;
+
+            if(nextMeatProductionSpeedIndex < meatData.meatData.Count) 
+            {
+                OnUpdatNextMeatProductionSpeed?.Invoke(meatData.meatData[nextMeatProductionSpeedIndex]);
+            }
+            int nextBaseHpIndex = gameRowData.State.BaseHealthIndex + 1;
+
+            if(nextMeatProductionSpeedIndex < baseHealthData.healthData.Count) 
+            {
+                OnUpdateNextBaseHp?.Invoke(baseHealthData.healthData[nextMeatProductionSpeedIndex]);
+            }
+
+            
         }
     }
 
