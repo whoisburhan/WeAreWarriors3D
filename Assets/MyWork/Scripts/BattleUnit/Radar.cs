@@ -14,7 +14,6 @@ namespace WeAreFighters3D.BattleUnit
             RaycastHit hit;
             if(Physics.BoxCast(transform.position, transform.lossyScale / 2, transform.forward, out hit, Quaternion.identity, radarRange, layerMask)) 
             {
-                Debug.Log($"ENEME " + hit.transform.name);
                 return hit.transform;
             }
             return null;

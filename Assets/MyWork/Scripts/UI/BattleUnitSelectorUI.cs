@@ -9,13 +9,6 @@ public class BattleUnitSelectorUI : MonoBehaviour
     [SerializeField] private Text battleUnitName;
     [SerializeField] private Text battleUnitPurchasePrice;
 
-    private void Start()
-    {
-        Debug.Log(PurchasePriceInText(500));
-        Debug.Log(PurchasePriceInText(5400));
-        Debug.Log(PurchasePriceInText(12334400));
-    }
-
     public void SetBattleUnitSelectorUI(Sprite battleUnitImg, string name, int purchasePrice) 
     {
         this.battleUnitImg.sprite = battleUnitImg;

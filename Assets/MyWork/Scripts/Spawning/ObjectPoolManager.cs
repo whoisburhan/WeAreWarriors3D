@@ -54,9 +54,12 @@ public class ObjectPoolManager : MonoBehaviour
         return spawnableObj;
     }
 
-    public static void ReturnObjectToPool(GameObject obj) 
+    public static void ReturnObjectToPool(GameObject obj, PoolType poolType) 
     {
-        string goName = obj.name.Substring(0,obj.name.Length - 7);
+        Debug.Log($"{obj.name} COunt {obj.name.Length}");
+        string goName = obj.name.Contains("(Clone)") ? obj.name.Substring(0,obj.name.Length - 7) : obj.name;
+       // string goName = GetPoolHolderName(poolType);
+
         PooledIbjectInfo pool = ObjectPools.Find(p => p.LookUpString == goName);
 
         if(pool == null)
@@ -83,6 +86,11 @@ public class ObjectPoolManager : MonoBehaviour
         particlesEmpty.transform.SetParent(objectPoolEmptyHolder.transform);
     }
 
+    private void SetUpPool(string poolName) 
+    {
+        var pool = new GameObject(poolName);
+        pool.transform.SetParent(objectPoolEmptyHolder.transform);
+    }
     private static GameObject SetParentObject(PoolType poolType) 
     {
         switch (poolType) 
@@ -92,6 +100,20 @@ public class ObjectPoolManager : MonoBehaviour
             case PoolType.Particles:
                 return particlesEmpty;
             case PoolType.None: 
+                return null;
+            default: return null;
+        }
+    }
+
+    private static string GetPoolHolderName(PoolType poolType)
+    {
+        switch (poolType)
+        {
+            case PoolType.BattleUnit:
+                return "Battle Units";
+            case PoolType.Particles:
+                return "Particles";
+            case PoolType.None:
                 return null;
             default: return null;
         }

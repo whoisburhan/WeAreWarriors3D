@@ -16,7 +16,6 @@ namespace WeAreFighters3D.BattleUnit
             {
                 // Attack Enemy
                 targetEnemy.SendMessage("Damage", damageDealAmount);
-                Debug.Log(targetEnemy.name + ": " + damageDealAmount);
                 interval = attackTimeInterval;
             }
 

@@ -18,9 +18,14 @@ namespace WeAreFighters3D.BattleUnit
         /// Attack
         private IAttack unitAttack;
         /// Animation
+        // Will Implement Later
 
+        int rewardAmount;
 
         private void Awake() => Init();
+
+        private void OnEnable() => GameManager.OnGameEnd += AutoDeActivate;
+        private void OnDisable() => GameManager.OnGameEnd -= AutoDeActivate;
 
         private void Start()
         {
@@ -46,6 +51,8 @@ namespace WeAreFighters3D.BattleUnit
             radar.RadarRange = data.RadarRange;
             radar.DetectableObjLayerMask = oponentLayer;
             unitAttack.DamageDealAmount = data.Attack;
+
+            rewardAmount = data.MaxHealth; // Test , For Now Let's reward based on the maxHealth
         }
 
         private void BattleUnitEngine() 
@@ -63,8 +70,14 @@ namespace WeAreFighters3D.BattleUnit
 
             if(currentHealth <= 0) 
             {
-                ObjectPoolManager.ReturnObjectToPool(this.gameObject);
+                if (gameObject.layer == 7) GameManager.OnUpdateMatchCoinCollection?.Invoke(rewardAmount);
+                AutoDeActivate();
             }
+        }
+
+        private void AutoDeActivate() 
+        {
+            ObjectPoolManager.ReturnObjectToPool(gameObject, PoolType.BattleUnit);
         }
     }
 }

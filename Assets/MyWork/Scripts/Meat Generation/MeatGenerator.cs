@@ -32,6 +32,7 @@ namespace WeAreFighters3D.MeatSystem
         public void StartMeatGeneration(bool startGeneration) 
         {
             MeatAmount = 0;
+            timer = 0;
             meatProductionSpeed = MeatGeneratorFormula(meatProductionSpeed);
             this.startGeneration = startGeneration;
         }

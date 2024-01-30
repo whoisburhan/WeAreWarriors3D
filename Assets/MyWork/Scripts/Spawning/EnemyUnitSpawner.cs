@@ -11,6 +11,9 @@ namespace WeAreFighters3D.Spwaner
         float timer = 0;
         bool canSpawn = false;
 
+        private void OnEnable() => GameManager.OnGameEnd += Reset;
+        private void OnDisable() => GameManager.OnGameEnd -= Reset;
+
         private void Update()
         {
             if (canSpawn) 
@@ -19,7 +22,7 @@ namespace WeAreFighters3D.Spwaner
                 
                 if(timer <= 0 ) 
                 {
-                    SpawnUnit(Random.Range(0, tiresAllUnitData.UnitTireData.Count));
+                    SpawnUnit(Random.Range(0, tiresAllUnitData.UnitTireData.Count)); // Test
                     timer = spawnIntervalTime;
                 }
             }
@@ -44,6 +47,11 @@ namespace WeAreFighters3D.Spwaner
         {
             canSpawn = true;
             timer = spawnIntervalTime;
+        }
+
+        private void Reset()
+        {
+            canSpawn = false;
         }
     }
 }

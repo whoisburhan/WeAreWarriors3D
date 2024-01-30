@@ -7,7 +7,16 @@ public class BaseController : MonoBehaviour,IBaseController
 {
     private IHealth health;
     private IHealthUI healthUI;
-    public int BaseHealth { set => UpdateData(value); }
+
+    private int baseHealth;
+    public int BaseHealth 
+    {
+        set
+        {
+            baseHealth = value;
+            UpdateData(value);
+        }
+    }
 
     private void Awake() 
     {
@@ -15,9 +24,10 @@ public class BaseController : MonoBehaviour,IBaseController
         healthUI = GetComponent<IHealthUI>();
     }
 
+    private void OnEnable() => GameManager.OnGameEnd += Reset;
+    private void OnDisable() => GameManager.OnGameEnd -= Reset;
     private void Start()
     {
-        Debug.Log("Ghhhhh");
        // UpdateData(100);
     }
 
@@ -29,7 +39,6 @@ public class BaseController : MonoBehaviour,IBaseController
     }
     private void Damage(int damageAmount)
     {
-        Debug.Log("Ghhhhh");
         var currentHealth = health.GotDamage(damageAmount);
         healthUI.UpdateHealthInUI(currentHealth);
 
@@ -38,13 +47,18 @@ public class BaseController : MonoBehaviour,IBaseController
             Debug.Log("Game Over");
             if (gameObject.CompareTag("Player")) 
             {
-
+                GameManager.OnGameEnd?.Invoke();
             }
             else 
             {
-
-            }
+                GameManager.OnGameEnd?.Invoke();
+            }      
         }
+    }
+
+    private void Reset()
+    {
+        UpdateData(baseHealth); // Test Reset, Not Ideal Way :|
     }
 }
 
