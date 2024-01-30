@@ -56,9 +56,7 @@ public class ObjectPoolManager : MonoBehaviour
 
     public static void ReturnObjectToPool(GameObject obj, PoolType poolType) 
     {
-        Debug.Log($"{obj.name} COunt {obj.name.Length}");
         string goName = obj.name.Contains("(Clone)") ? obj.name.Substring(0,obj.name.Length - 7) : obj.name;
-       // string goName = GetPoolHolderName(poolType);
 
         PooledIbjectInfo pool = ObjectPools.Find(p => p.LookUpString == goName);
 
@@ -100,20 +98,6 @@ public class ObjectPoolManager : MonoBehaviour
             case PoolType.Particles:
                 return particlesEmpty;
             case PoolType.None: 
-                return null;
-            default: return null;
-        }
-    }
-
-    private static string GetPoolHolderName(PoolType poolType)
-    {
-        switch (poolType)
-        {
-            case PoolType.BattleUnit:
-                return "Battle Units";
-            case PoolType.Particles:
-                return "Particles";
-            case PoolType.None:
                 return null;
             default: return null;
         }

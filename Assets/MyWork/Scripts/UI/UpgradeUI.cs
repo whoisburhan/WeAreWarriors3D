@@ -16,6 +16,17 @@ public class UpgradeUI : MonoBehaviour
     [SerializeField] private Text m_NextBaseHpCostText;
     [SerializeField] private Button m_NextBaseHpButton;
 
+    int baseHpUpgradeCost, meatGenerationSpeedUpgradeCost;
+
+    private void Start()
+    {
+        m_NextBaseHpButton.onClick.RemoveAllListeners();
+        m_NextBaseHpButton.onClick.AddListener(BuyBaseMaxHp);
+
+        m_NextMeatGenerationSpeedButton.onClick.RemoveAllListeners();
+        m_NextMeatGenerationSpeedButton.onClick.AddListener(BuyMeatProductionSpeed);
+    }
+
     private void OnEnable()
     {
         GameData.OnUpdateTireData += UpdateUpgradeUI;
@@ -47,14 +58,33 @@ public class UpgradeUI : MonoBehaviour
 
     private void UpdateMeatProductionSpeedInUI(MeatData meatData) 
     {
-        Debug.Log("KKKKKKKK");
         m_NextMeatGenerationSpeedText.text = meatData.MeatGeneratePerSecond.ToString() + "/s";
         m_NextMeatGenerationSpeedCostText.text = meatData.UpgradePrice.ToString();
+        meatGenerationSpeedUpgradeCost = meatData.UpgradePrice;
     }
 
     private void UpdateBaseHPinUI(BaseHealth baseHealthData) 
     {
         m_NextBaseHpText.text = baseHealthData.MaxHealth.ToString();
         m_NextBaseHpCostText.text = baseHealthData.UpgradePrice.ToString();
+        baseHpUpgradeCost = baseHealthData.UpgradePrice;
+    }
+
+    private void BuyMeatProductionSpeed() 
+    {
+        if(GameData.OnGetTotalCoin() > meatGenerationSpeedUpgradeCost) 
+        {
+            GameData.OnIncreaseMeatGeneartionSpeedIndex?.Invoke();
+            GameData.OnUpdateTotalCoin(-baseHpUpgradeCost);
+        }
+    }
+
+    private void BuyBaseMaxHp() 
+    {
+        if (GameData.OnGetTotalCoin() > baseHpUpgradeCost)
+        {
+            GameData.OnIncreaseBaseHpIndex?.Invoke();
+            GameData.OnUpdateTotalCoin(-baseHpUpgradeCost);
+        }
     }
 }

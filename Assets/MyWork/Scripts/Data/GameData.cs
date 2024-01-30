@@ -15,6 +15,8 @@ namespace WeAreFighters3D.Data
         public static Action<int> OnUpdateTotalCoin;
         public static Action<MeatData> OnUpdatNextMeatProductionSpeed;
         public static Action<BaseHealth> OnUpdateNextBaseHp;
+        public static Action OnIncreaseMeatGeneartionSpeedIndex;
+        public static Action OnIncreaseBaseHpIndex;
 
         public UnityEvent<string> OnUpdateCoinInString;
 
@@ -36,6 +38,8 @@ namespace WeAreFighters3D.Data
             OnGetBaseHealthDataRequest += GetBaseHealth;
             OnGetTotalCoin += GetTotalCoin;
             OnUpdateTotalCoin += UpdateTotalCoin;
+            OnIncreaseMeatGeneartionSpeedIndex += IncreaseMeatGenerationSpeedIndex;
+            OnIncreaseBaseHpIndex += IncreaseBaseHPIndex;
         }
         private void OnDisable()
         {
@@ -44,6 +48,8 @@ namespace WeAreFighters3D.Data
             OnGetBaseHealthDataRequest -= GetBaseHealth;
             OnGetTotalCoin -= GetTotalCoin;
             OnUpdateTotalCoin -= UpdateTotalCoin;
+            OnIncreaseMeatGeneartionSpeedIndex -= IncreaseMeatGenerationSpeedIndex;
+            OnIncreaseBaseHpIndex -= IncreaseBaseHPIndex;
         }
 
         private void Start()
@@ -93,11 +99,25 @@ namespace WeAreFighters3D.Data
             Debug.Log($"UpdateTotalCoin(int amount) {amount}");
             gameRowData.State.CoinAmount += amount;
             if(gameRowData.State.CoinAmount < 0) gameRowData.State.CoinAmount = 0;
-            
+
+            UpdateUI();
+
             gameRowData.Save();
         }
 
         private int GetTotalCoin() => gameRowData.State.CoinAmount;
+
+        private void IncreaseMeatGenerationSpeedIndex() 
+        {
+            gameRowData.State.MeatGeneratorIndex++;
+            //gameRowData.Save();
+        }
+
+        private void IncreaseBaseHPIndex() 
+        {
+            gameRowData.State.BaseHealthIndex++;
+            //gameRowData.Save();
+        }
 
         private void UpdateUI() 
         {
@@ -111,12 +131,11 @@ namespace WeAreFighters3D.Data
             }
             int nextBaseHpIndex = gameRowData.State.BaseHealthIndex + 1;
 
-            if(nextMeatProductionSpeedIndex < baseHealthData.healthData.Count) 
+            if(nextBaseHpIndex < baseHealthData.healthData.Count) 
             {
-                OnUpdateNextBaseHp?.Invoke(baseHealthData.healthData[nextMeatProductionSpeedIndex]);
+                OnUpdateNextBaseHp?.Invoke(baseHealthData.healthData[nextBaseHpIndex]);
             }
-
-            
+         
         }
     }
 

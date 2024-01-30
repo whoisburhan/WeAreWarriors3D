@@ -84,14 +84,12 @@ public class GameManager : MonoBehaviour
 
     private void OnGameEndAction() 
     {
-        Debug.Log($"Match Coin {matchCointCollected}");
         GameData.OnUpdateTotalCoin(matchCointCollected);
         OnGameEndUIUpdate?.Invoke();
     }
 
     private void UpdateInMatchCoinCollection(int rewardCoin)
     {
-        Debug.Log(rewardCoin.ToString());
         matchCointCollected += rewardCoin;
         OnMatchCoinUpdate?.Invoke(matchCointCollected.ToString());
     }
