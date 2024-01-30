@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Meat Generator Data
   m_EditorClassIdentifier: 
   meatData:
-  - MeatGeneratePerSecond: 0.2
+  - MeatGeneratePerSecond: 0.3
     UpgradePrice: 0
-  - MeatGeneratePerSecond: 0.32
+  - MeatGeneratePerSecond: 0.6
     UpgradePrice: 5
-  - MeatGeneratePerSecond: 0.48
+  - MeatGeneratePerSecond: 0.9
     UpgradePrice: 10
-  - MeatGeneratePerSecond: 0.64
+  - MeatGeneratePerSecond: 1.2
     UpgradePrice: 15

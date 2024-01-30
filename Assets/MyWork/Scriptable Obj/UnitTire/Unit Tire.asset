@@ -23,8 +23,8 @@ MonoBehaviour:
   - UnitName: Queen
     UnitUnlockPrice: 1200
     UnitPortrait: {fileID: 21300000, guid: 1e7151342e980464a88db1ae971d80f7, type: 3}
-    UnitData: {fileID: 11400000, guid: 8e2e5dc6c3938db42acd64e65aa4c277, type: 2}
-    UnitPrefab: {fileID: 6314500602769359362, guid: 519302a40ee4d5c4385e20cb0c06d702,
+    UnitData: {fileID: 11400000, guid: bf096f972046ef6428226b89d821fdc0, type: 2}
+    UnitPrefab: {fileID: 8631309557652341968, guid: 4839aaa636e9799498cb9a77c642f42a,
       type: 3}
     UnitGenerationCost: 5
   - UnitName: King
