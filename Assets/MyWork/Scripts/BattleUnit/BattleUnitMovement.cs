@@ -17,7 +17,12 @@ namespace WeAreFighters3D.BattleUnit
         public float Speed { set => speed = value;  }
         public MoveDir MoveDir { set => dir = value; }
 
-        private void Awake() => rb = GetComponent<Rigidbody>();
+        private void Awake()
+        {
+            rb = GetComponent<Rigidbody>();
+        }
+
+        private void OnEnable() => rb.isKinematic = true;
 
         public void Move()
         {

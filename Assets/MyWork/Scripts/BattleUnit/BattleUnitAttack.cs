@@ -12,15 +12,8 @@ namespace WeAreFighters3D.BattleUnit
 
         public void Attack(Transform targetEnemy)
         {
-            if(interval <= 0) 
-            {
-                // Attack Enemy
-                targetEnemy.SendMessage("Damage", damageDealAmount);
-                interval = attackTimeInterval;
-            }
-
-            interval -= Time.deltaTime;
-            
+            if(targetEnemy == null) return;
+            targetEnemy.SendMessage("Damage", damageDealAmount);
         }
     }
 }

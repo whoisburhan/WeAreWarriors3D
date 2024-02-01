@@ -9,15 +9,12 @@ namespace WeAreFighters3D.BattleUnit
 
     public enum BattleUnitAnimationState
     {
-        Idle, Chase
-    }
-    public class BattleUnitAnimation : MonoBehaviour, IAnimation
-    {
-
+        Walk, Attack, Die
     }
 
     internal interface IAnimation
     {
+        public void SetAnimationState(BattleUnitAnimationState state);
     }
 
     public interface IReset
